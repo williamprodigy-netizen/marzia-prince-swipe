@@ -1,0 +1,182 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Analysis — UGC Fasttrack — Marzia Prince</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--panel:#f8fafc;--bg:#eef0f3;
+ --accent:#4f46e5;--good:#059669;--warn:#ea580c;--bad:#9f1239}
+@media(prefers-color-scheme:dark){:root{--ink:#e8eaed;--muted:#9aa3b2;--line:#2a3140;
+ --panel:#151a23;--bg:#0d1117;--accent:#818cf8}}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;
+ -webkit-font-smoothing:antialiased;line-height:1.55}
+h1,h2,h3,h4{font-weight:600;letter-spacing:-.02em}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+header.top{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.topin{max-width:1180px;margin:0 auto;padding:0 28px;display:flex;align-items:center;gap:26px;height:60px}
+.brand{font-size:15px;font-weight:600;white-space:nowrap}
+.brand span{color:var(--muted);font-weight:400}
+nav.main{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none}
+nav.main::-webkit-scrollbar{display:none}
+nav.main a{font-size:14px;color:var(--muted);text-decoration:none;white-space:nowrap;
+ padding:6px 0;border-bottom:2px solid transparent}
+nav.main a:hover{color:var(--ink)}
+nav.main a.on{color:var(--ink);border-bottom-color:var(--accent)}
+.hero{padding:48px 0 26px}
+.kick{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.hero h1{font-size:40px;margin-bottom:14px;line-height:1.15}
+.hero p{font-size:17px;color:var(--muted);max-width:820px}
+section{padding:26px 0}
+h2.sec{font-size:22px;margin-bottom:16px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{font-size:15px;margin-bottom:7px}
+.card p{font-size:14px;color:var(--muted)}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.stat .n{font-size:26px;font-weight:600;letter-spacing:-.03em}
+.stat .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:3px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+tr:last-child td{border-bottom:none}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;
+ border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.tag.good{color:var(--good);border-color:var(--good)}
+.tag.warn{color:var(--warn);border-color:var(--warn)}
+.tag.bad{color:var(--bad);border-color:var(--bad)}
+figure{background:var(--panel);border:1px solid var(--line);border-radius:9px;overflow:hidden}
+figure img{width:100%;display:block;background:#000;cursor:zoom-in}
+figcaption{padding:8px 10px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+figcaption b{color:var(--ink);font-weight:600}
+details{background:var(--panel);border:1px solid var(--line);border-radius:9px;margin-bottom:9px}
+summary{padding:12px 15px;cursor:pointer;font-size:14px;font-weight:500;list-style:none;
+ display:flex;justify-content:space-between;gap:14px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary .meta{font-size:12px;color:var(--muted);font-weight:400;white-space:nowrap}
+details .body{padding:0 15px 15px;font-size:14.5px;line-height:1.72;color:var(--ink)}
+details .body p{margin-bottom:12px}
+.ts{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums;font-size:12.5px}
+.searchbar{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:9px;
+ background:var(--panel);color:var(--ink);font-size:14.5px;margin-bottom:14px;font-family:inherit}
+.note{border-left:3px solid var(--accent);padding:11px 15px;background:var(--panel);
+ border-radius:0 9px 9px 0;font-size:14px;margin-bottom:13px}
+.note.warn{border-left-color:var(--warn)}
+footer{padding:36px 0;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:34px}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.93);display:none;align-items:center;
+ justify-content:center;z-index:99;cursor:zoom-out;padding:20px}
+#lb img{max-width:100%;max-height:92vh;object-fit:contain}
+#lb .cap{position:fixed;bottom:14px;left:0;right:0;text-align:center;color:#cbd5e1;font-size:13px;padding:0 20px}
+</style></head><body>
+<header class="top"><div class="topin">
+<div class="brand">Marzia Prince <span>swipe</span></div>
+<nav class="main"><a href="index.html" class="">Overview</a><a href="analysis.html" class="on">Analysis</a><a href="pages.html" class="">Funnel pages</a><a href="slides.html" class="">Slides</a><a href="transcripts.html" class="">Transcript</a><a href="decks.html" class="">Decks</a><a href="videos.html" class="">Video library</a><a href="copybank.html" class="">Copy bank</a></nav></div></header>
+<div class="wrap">
+<div class="hero"><div class="kick">Teardown</div><h1>Analysis</h1>
+<p>What they do, why it works, and what is worth taking.</p></div>
+<section>
+<div class="note"><b>The one-line read.</b> This is not a solo creator competing with us. It is
+an agency-operated funnel with a creator front, aimed one rung up the ladder from our customer
+&mdash; at the creator who already earns $1K&ndash;$5K a month and cannot break $10K. They sell
+the ceiling. We sell the start.</div>
+
+<h2 class="sec">How the two hours are built</h2>
+<div class="tablewrap"><table>
+<tr><th>Time</th><th>Beat</th><th>What she is doing</th></tr>
+<tr><td>00:00</td><td>Commitment</td><td>&ldquo;Drop a YES in the chat&rdquo;, then
+&ldquo;on a scale of 1 to 10, type your number&rdquo;</td></tr>
+<tr><td>~00:07</td><td>Pre-empt</td><td>Names the &ldquo;sales presentation disguised as a
+class&rdquo; suspicion out loud, and promises not to gatekeep</td></tr>
+<tr><td>~00:15</td><td>Origin</td><td>2017 fitness coach &rarr; hamster wheel of one-off deals
+&rarr; income swinging between $1,500 and $5,000</td></tr>
+<tr><td>~00:29</td><td>Mechanism</td><td>The 5-step Fasttrack System on two pillars: The Skill
+and The Acquisition. Order matters and you cannot skip a step</td></tr>
+<tr><td>~01:00</td><td>Proof</td><td>Named students &mdash; Angela, Jillian, Velma, Leisha,
+Kelly, Jennifer. Leisha a nurse of 30 years; Kelly's husband had lost his job</td></tr>
+<tr><td>~01:10</td><td>Reframe</td><td>HAIRLOSS / ACNE / WEIGHT GAIN / WRINKLES &rarr;
+&ldquo;authenticity is what sells&rdquo;</td></tr>
+<tr><td>~01:20</td><td>Offer</td><td>45 modules, 10-step roadmap, weekly coaching, community,
+5 bonuses. <b>No price. No checkout link.</b></td></tr>
+<tr><td>~01:25</td><td>Re-ask</td><td>The 1&ndash;10 confidence question again &mdash; the delta
+is the sale</td></tr>
+<tr><td>01:30+</td><td>Live Q&amp;A</td><td>~35 minutes answering by name, with her team working
+the chat to fix booking problems in real time</td></tr>
+</table></div>
+
+<h2 class="sec">Worth taking</h2>
+<div class="grid g2">
+<div class="card"><h3>Sell the VIP pass before the event</h3><p>$37 on a free masterclass, with
+the slide deck as the headline bonus &mdash; delivered only when the session ends. It monetises
+registration and buys stay-rate at zero marginal cost. We currently monetise nothing between
+registration and the room.</p></div>
+<div class="card"><h3>Put the disqualifier in the copy</h3><p>A written &ldquo;NOT for you
+if&rdquo; list beside the &ldquo;FOR you if&rdquo; list, on the registration page. It filters
+get-rich-quick traffic before the form rather than after the setter has spent an hour on it.</p></div>
+<div class="card"><h3>Bookend with a scored question</h3><p>Same 1&ndash;10 confidence question at
+the open and the close. The prospect measures their own movement and types it publicly. Cheap,
+and it manufactures the &ldquo;something changed&rdquo; feeling the close depends on.</p></div>
+<div class="card"><h3>Name the suspicion first</h3><p>&ldquo;You've probably attended
+masterclasses before&hellip; at the end they hit you with a pitch.&rdquo; Saying it before the
+audience thinks it converts a defence into rapport.</p></div>
+<div class="card"><h3>A group chat, not a broadcast list</h3><p>WhatsApp group as Step 1 on the
+confirmation page. Registrants see each other's momentum, which a one-to-one SMS thread cannot
+manufacture. Worth testing against AI-LNS rather than replacing it.</p></div>
+<div class="card"><h3>Insecurity as the qualification</h3><p>She converts the exact reason a
+woman believes she cannot do this &mdash; her age, her skin, her weight &mdash; into the reason
+brands will pay her. That is a stronger emotional move than any income claim on the page.</p></div>
+</div>
+
+<h2 class="sec">Where they are weak</h2>
+<div class="grid g2">
+<div class="card"><h3>The calendar link is broken</h3><p>Add-to-Calendar writes 22 July 2026 on a
+funnel selling 4 August. Three pages still reference July 21st. Anyone diligent enough to save
+the event is the person most likely to attend, and they are being sent to a dead date.</p></div>
+<div class="card"><h3>The replay is a free download</h3><p>Two hours of their best sales asset,
+ungated, resolving to a direct MP4. It cost nothing to take.</p></div>
+<div class="card"><h3>The funnel is bought, not built</h3><p>Leftover alt text from another
+operator's funnel, duplicate slugs, stale dates. Whatever House of Leap is good at, maintaining
+this one is not it.</p></div>
+<div class="card"><h3>No guarantee at all</h3><p>She turns it into a virtue &mdash; &ldquo;I don't
+want to sell on guarantees and fancy promises&rdquo; &mdash; but it is still a missing risk
+reversal against an unstated price.</p></div>
+</div>
+
+<h2 class="sec">Open questions</h2>
+<p>The Typeform (<code>Jg7V8Car</code>) was not submitted, so the qualification questions, the DQ
+path and the price are unobserved. There is no ad-library coverage of this brand, so nothing here
+supports any claim about their traffic or spend. The WhatsApp group is live and was
+<b>not</b> joined &mdash; doing so would expose a real personal number, so the pre-class content
+inside it is unseen.</p>
+</section>
+<footer>Captured 3 August 2026. Evidence in <code>~/UNDERGROUND_FUNNELS_SSOT</code>
+and <code>~/Downloads/Swipes/UGC_FASTTRACK_Swipe</code>. Built with the <code>/swipe</code> skill.<br>
+Competitor research. Not for redistribution.</footer></div>
+<div id="lb"><img alt=""><div class="cap"></div></div>
+<script>
+document.addEventListener('click',function(e){
+  if(e.target.tagName==='IMG'&&e.target.closest('figure')){
+    var lb=document.getElementById('lb');
+    lb.querySelector('img').src=e.target.dataset.full||e.target.src;
+    var fc=e.target.closest('figure').querySelector('figcaption');
+    lb.querySelector('.cap').textContent=fc?fc.textContent.trim():'';
+    lb.style.display='flex';
+  } else if(e.target.closest('#lb')){document.getElementById('lb').style.display='none';}
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')document.getElementById('lb').style.display='none';
+});
+function wireSearch(id,sel){
+  var b=document.getElementById(id); if(!b)return;
+  b.addEventListener('input',function(){
+    var q=b.value.toLowerCase();
+    document.querySelectorAll(sel).forEach(function(el){
+      el.style.display = !q || el.textContent.toLowerCase().indexOf(q)>-1 ? '' : 'none';
+    });
+  });
+}
+wireSearch('tsearch','details.tr');
+wireSearch('ssearch','figure.sl');
+</script></body></html>
